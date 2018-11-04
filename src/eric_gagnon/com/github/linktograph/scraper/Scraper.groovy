@@ -6,17 +6,22 @@ import java.nio.file.*
 class Scraper {
 
     static def ScrapFilesToCache(sourceLinks, cacheFolderPath) {
-        // Concurrent Download.
-        sourceLinks.each {
-            def filename = Link.getSha1FileNameForLink(it)
-            // todo_eg : concurrent download with Groovy...
-            def cacheFilePath = Paths.get(cacheFolderPath, filename).toString()
+        // todo_eg : add this verification everywhere?
 
-            if (!new File(cacheFilePath).exists()) {
-                downloadFileForLink(it, cacheFilePath)
-            } else {
-                println "Skip downloadFileForLink, file already in cache : $it "
+        if (sourceLinks instanceof Collection) {
+            // Concurrent Download.
+            sourceLinks.each {
+                // todo_eg : concurrent download with Groovy...
+                def cacheFilePath = getCacheFilePath(it, cacheFolderPath)
+
+                if (!new File(cacheFilePath).exists()) {
+                    downloadFileForLink(it, cacheFilePath)
+                } else {
+                    println "Skip downloadFileForLink, file already in cache : $it "
+                }
             }
+        } else {
+            println "Skipping. SourceLinks is not a collection : $sourceLinks."
         }
     }
 
@@ -37,4 +42,14 @@ class Scraper {
             println(e.getStackTrace());
         }
     }
+
+    static def getCacheFilePath(link, cacheFolderPath) {
+        def filename = Link.getSha1FileNameForLink(link)
+        // todo_eg : concurrent download with Groovy...
+        def cacheFilePath = Paths.get(cacheFolderPath, filename).toString()
+
+        return cacheFilePath
+    }
+
+
 }
