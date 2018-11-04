@@ -1,4 +1,6 @@
-class LinkToGraphApp {
+package eric_gagnon.com.github.linktograph
+
+class App {
 
     void doProcess() {
         println "doProcess"
@@ -11,15 +13,19 @@ class LinkToGraphApp {
         subProcessExportGraph()
     }
 
-    def subProcessGetUniqueLinks(){
+    def subProcessGetUniqueLinks() {
         println "subProcessGetUniqueLinks"
+
+        // todo_eg : Pourquoi "." = src?
+        def currentDir = new File(".").absolutePath
+        println currentDir
     }
 
-    def subProcessScrapFileToCache(){
+    def subProcessScrapFileToCache() {
         println "subProcessScrapFileToCache"
     }
 
-    def subProcessTikaTika(){
+    def subProcessTikaTika() {
         println "subProcessTikaTika"
     }
 
@@ -27,11 +33,11 @@ class LinkToGraphApp {
         println "subProcessExtractWords"
     }
 
-    def subProcessPrepareDataForGraph(){
+    def subProcessPrepareDataForGraph() {
         println "subProcessPrepareDataForGraph"
     }
 
-    def subProcessExportGraph(){
+    def subProcessExportGraph() {
         println "subProcessExportGraph"
     }
 

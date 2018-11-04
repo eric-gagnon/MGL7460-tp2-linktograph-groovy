@@ -1,5 +1,6 @@
+import eric_gagnon.com.github.linktograph.App
 
-app = new LinkToGraphApp()
+app = new App()
 app.doProcess()
 
 
