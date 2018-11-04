@@ -1,21 +1,34 @@
-package eric_gagnon.com.github.linktograph.link
+package eric_gagnon.com.github.linktograph
 
 class Link {
 
-    def getUniqueLinksFromFile(filePath) {
+    static def getUniqueLinksFromFile(filePath) {
 
         def links = getLinksFromFile(filePath)
         return removeDuplicates(links)
     }
 
-    private def getLinksFromFile(filePath) {
+    static def isLinkValidURL(link) {
+        /* There is no default implementation like Go but new URL will return a error if the URL is not parsed correctly. */
+        try {
+            new URL(link)
+            return true
+        } catch (Exception e) {
+            println "The link was not parsed as a valid URL, it will be ignored : $link"
+            return false
+        }
+    }
+
+    static def getLinksFromFile(filePath) {
 
         def links = []
 
         try {
             new File(filePath).eachLine('UTF-8') {
                 // Vérifier si valide.
-                links.add(it)
+                if (isLinkValidURL(it)) {
+                    links.add(it)
+                }
             }
         }
         catch (FileNotFoundException e) {
@@ -36,8 +49,9 @@ class Link {
     }
 
     /* todo_eg : This function could be removed entirely, removing duplicates is trivial in Groovy compared to Go. */
-    def removeDuplicates(links) {
-        // todo_eg : what's the prefered way in Groovy?
+
+    static def removeDuplicates(links) {
+
         links = links.unique(false /* return a new list, keep orignal links unmodifed. */)
         def linksSize = links.size()
         println "Number of links without duplicates: $linksSize"
@@ -45,9 +59,8 @@ class Link {
         return links
     }
 
-    def getSha1FileNameForLink(link) {
+    static def getSha1FileNameForLink(link) {
         def sha1 = link.digest('SHA-1')
-        println "sha1 $link, $sha1"
         return sha1
     }
 }

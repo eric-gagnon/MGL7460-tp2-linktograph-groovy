@@ -1,16 +1,20 @@
 package eric_gagnon.com.github.linktograph
 
-import eric_gagnon.com.github.linktograph.link.Link
+import eric_gagnon.com.github.linktograph.Link
 
 import java.nio.file.*
 
 class App {
 
+    def rootDir
+
+    def App() {
+        rootDir = new File("..")
+    }
+
     void doProcess() {
         println "doProcess"
 
-        // todo_eg : Pourquoi "." = src?
-        def rootDir = new File("..")
         def inputFilePath = Paths.get(rootDir.path, "input/clean-links.txt")
 
         def sourceLinks = subProcessGetUniqueLinks(inputFilePath.toString())
@@ -26,15 +30,16 @@ class App {
         println "subProcessGetUniqueLinks"
         println "inputFilePath: $filePath"
 
-        def link = new Link()
-        def sourceLinks = link.getUniqueLinksFromFile(filePath)
-
-        return sourceLinks
+        return Link.getUniqueLinksFromFile(filePath)
     }
 
     def subProcessScrapFileToCache(sourceLinks) {
         println "subProcessScrapFileToCache"
         println "sourceLinks: $sourceLinks"
+
+        def cacheFolder = Paths.get(rootDir.path, "cache", "web")
+
+        Scraper.ScrapFilesToCache(sourceLinks, cacheFolder.toString())
     }
 
     def subProcessTikaTika() {
