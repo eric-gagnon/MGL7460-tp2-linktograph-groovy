@@ -15,7 +15,7 @@ class ScraperTest extends GroovyTestCase {
         def temp = getTempTestFolder()
 
         def links = [downloadTestUrl]
-        Scraper.ScrapFilesToCache( links, temp.toString())
+        Scraper.ScrapFilesToCache(links, temp.toString())
 
         def cacheFilePath = Scraper.getCacheFilePath(downloadTestUrl, temp.toString())
         def downloadedContent = new File(cacheFilePath).getText('UTF-8')
