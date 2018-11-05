@@ -1,3 +1,5 @@
+package test
+
 import eric_gagnon.com.github.linktograph.Link
 
 class linkTest extends GroovyTestCase {

@@ -53,6 +53,7 @@ class Scraper {
         }
     }
 
+    // todo_eg: move this in common.
     static def getCacheFilePath(link, cacheFolderPath) {
         def filename = Link.getSha1FileNameForLink(link)
         // todo_eg : concurrent download with Groovy...
@@ -60,6 +61,4 @@ class Scraper {
 
         return cacheFilePath
     }
-
-
 }

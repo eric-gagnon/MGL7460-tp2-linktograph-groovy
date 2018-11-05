@@ -9,13 +9,13 @@ class App {
     def rootDir
 
     def App() {
-        rootDir = new File("..")
+        rootDir = ".."
     }
 
     void doProcess() {
         println "doProcess"
 
-        def inputFilePath = Paths.get(rootDir.path, "input/clean-links.txt")
+        def inputFilePath = Paths.get(rootDir, "input/clean-links.txt")
 
         def sourceLinks = subProcessGetUniqueLinks(inputFilePath.toString())
 
@@ -37,13 +37,16 @@ class App {
         println "subProcessScrapFileToCache"
         println "sourceLinks: $sourceLinks"
 
-        def cacheFolder = Paths.get(rootDir.path, "cache", "web")
+        def cacheFolder = Paths.get(rootDir, "cache", "web")
 
         Scraper.ScrapFilesToCache(sourceLinks, cacheFolder.toString())
     }
 
     def subProcessTikaTika() {
         println "subProcessTikaTika"
+
+        /*def cacheFolderPath = Paths.get("cache","tika")*/
+
     }
 
     def subProcessExtractWords() {

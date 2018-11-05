@@ -1,8 +1,6 @@
-package test.scraper
+package test
 
 import eric_gagnon.com.github.linktograph.Scraper
-
-import java.nio.file.Paths
 
 class ScraperTest extends GroovyTestCase {
     def downloadTestUrl
@@ -12,7 +10,7 @@ class ScraperTest extends GroovyTestCase {
     }
 
     void testCache() {
-        def temp = getTempTestFolder()
+        def temp = TestFolder.getTempTestFolder("scraper")
 
         def links = [downloadTestUrl]
         Scraper.ScrapFilesToCache(links, temp.toString())
@@ -24,20 +22,12 @@ class ScraperTest extends GroovyTestCase {
     }
 
     void testCacheWithBadParameter() {
-        def temp = getTempTestFolder()
+        def temp = TestFolder.getTempTestFolder()
 
         Scraper.ScrapFilesToCache(downloadTestUrl /* Bad parameter, not in a list */, temp.toString())
         def cacheFilePath = Scraper.getCacheFilePath(downloadTestUrl, temp.toString())
 
         // File should not have been downloaded at all. Not empty created file either.
         assert !new File(cacheFilePath).exists()
-    }
-
-    def getTempTestFolder() {
-        File temp = File.createTempDir("linktograph-", "-download-test")
-        // todo_eg in ScrapFilesToCache if downloadTestUrl is not a list.
-        println "Temporary test folder created in : $temp"
-
-        return temp
     }
 }
