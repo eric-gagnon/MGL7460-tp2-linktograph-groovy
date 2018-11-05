@@ -5,7 +5,7 @@ import java.nio.file.*
 
 class Scraper {
 
-    static def ScrapFilesToCache(sourceLinks, cacheFolderPath) {
+    static def ScrapeFilesToCache(sourceLinks, cacheFolderPath) {
 
         def threads = []
 

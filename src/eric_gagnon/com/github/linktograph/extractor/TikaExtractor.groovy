@@ -1,4 +1,4 @@
-package eric_gagnon.com.github.linktograph.extractor
+package eric_gagnon.com.github.linktograph
 
 import eric_gagnon.com.github.linktograph.Link
 import eric_gagnon.com.github.linktograph.Scraper
@@ -73,7 +73,7 @@ class TikaExtractor {
 
             def responseCode = connection.getResponseCode();
 
-            if(responseCode.equals(200)) {
+            if (responseCode.equals(200)) {
                 // Save to file.
                 def cacheFilePath = Paths.get(save_result_cache_folderPath, send_to_tika_filename /* save using same sha1 identifier as send_to_tika_filename. */).toString()
                 new File(cacheFilePath) << connection.getInputStream().getBytes()

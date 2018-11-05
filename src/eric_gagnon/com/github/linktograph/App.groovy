@@ -1,6 +1,8 @@
 package eric_gagnon.com.github.linktograph
 
 import eric_gagnon.com.github.linktograph.Link
+import eric_gagnon.com.github.linktograph.TikaExtractor
+import eric_gagnon.com.github.linktograph.Scraper
 
 import java.nio.file.*
 
@@ -19,8 +21,8 @@ class App {
 
         def sourceLinks = subProcessGetUniqueLinks(inputFilePath.toString())
 
-        subProcessScrapFileToCache(sourceLinks)
-        subProcessTikaTika()
+        subProcessScrapeFileToCache(sourceLinks)
+        subProcessTikaExtract(sourceLinks)
         subProcessExtractWords()
         subProcessPrepareDataForGraph()
         subProcessExportGraph()
@@ -33,32 +35,45 @@ class App {
         return Link.getUniqueLinksFromFile(filePath)
     }
 
-    def subProcessScrapFileToCache(sourceLinks) {
+    def subProcessScrapeFileToCache(sourceLinks) {
         println "subProcessScrapFileToCache"
         println "sourceLinks: $sourceLinks"
 
         def cacheFolder = Paths.get(rootDir, "cache", "web")
 
-        Scraper.ScrapFilesToCache(sourceLinks, cacheFolder.toString())
+        Scraper.ScrapeFilesToCache(sourceLinks, cacheFolder.toString())
     }
 
-    def subProcessTikaTika() {
+    def subProcessTikaExtract(sourceLinks) {
         println "subProcessTikaTika"
 
-        /*def cacheFolderPath = Paths.get("cache","tika")*/
+        def sourceCacheFolderPath = Paths.get("cache","web").toString()
+        def tikaCacheFolderPath = Paths.get("cache","tika").toString()
 
+        TikaExtractor.getAllTikaResultsToCache(sourceLinks, sourceCacheFolderPath, tikaCacheFolderPath)
     }
 
     def subProcessExtractWords() {
         println "subProcessExtractWords"
+        /* todo_eg : to be completed. */
     }
 
     def subProcessPrepareDataForGraph() {
         println "subProcessPrepareDataForGraph"
+        /* todo_eg : to be completed. */
+        /* Node :
+           Link
+           downloaded_status
+           tika_status
+           tika_text
+           tika_meta_person --> explode links
+           links (missing)
+           word (missing)
+         */
     }
 
     def subProcessExportGraph() {
         println "subProcessExportGraph"
+        /* todo_eg : to be completed. */
     }
-
 }

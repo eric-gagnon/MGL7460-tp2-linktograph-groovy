@@ -1,1 +1,10 @@
 src
+src.eric_gagnon.com.github.linktograph
+src.eric_gagnon.com.github.linktograph.extractor
+src.eric_gagnon.com.github.linktograph.graph
+src.eric_gagnon.com.github.linktograph.link
+src.eric_gagnon.com.github.linktograph.scraper
+src.test
+src.test.extractor
+src.test.link
+src.test.scraper

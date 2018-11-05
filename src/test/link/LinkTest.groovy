@@ -33,7 +33,6 @@ class linkTest extends GroovyTestCase {
         assert !listWithoutDuplicates.sort().equals(listb.sort())
         assert listWithoutDuplicates.size() == 2
         assert listWithoutDuplicates.count("a") == 1
-
     }
 
     void testReadFromUnexistingFile() {

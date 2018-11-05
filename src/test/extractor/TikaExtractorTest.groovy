@@ -1,7 +1,7 @@
 package test
 
 import eric_gagnon.com.github.linktograph.Link
-import eric_gagnon.com.github.linktograph.extractor.TikaExtractor
+import eric_gagnon.com.github.linktograph.TikaExtractor
 
 import java.nio.file.Paths
 
@@ -9,14 +9,15 @@ class TikaExtractorTest extends GroovyTestCase {
 
     /* Require running tika. */
     /* todo_eg : test should check if tika is available? */
+
     void testGetTikaRMetaAndTextResponseToCache() {
 
-        def inputFileFolderPath = Paths.get("src","test", "extractor", "testdata")
+        def inputFileFolderPath = Paths.get("src", "test", "extractor", "testdata")
         def testFilename = "b9c2c0469b9101d66667b79166061f7e4d62c9ef"
         def fakeLink = "http://placeholder_for_test_not_a_real_url/"
 
         def cacheFolderPath = TestFolder.getTempTestFolder("tika")
-        TikaExtractor.getTikaRMetaAndTextResponseToCache( fakeLink, testFilename, inputFileFolderPath.toString(), cacheFolderPath.toString())
+        TikaExtractor.getTikaRMetaAndTextResponseToCache(fakeLink, testFilename, inputFileFolderPath.toString(), cacheFolderPath.toString())
 
         // 1. Check file exist.
         def cacheFilePath = Paths.get(cacheFolderPath.toString(), testFilename).toString()
