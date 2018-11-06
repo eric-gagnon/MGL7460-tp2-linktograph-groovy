@@ -47,8 +47,8 @@ class App {
     def subProcessTikaExtract(sourceLinks) {
         println "subProcessTikaTika"
 
-        def sourceCacheFolderPath = Paths.get("cache","web").toString()
-        def tikaCacheFolderPath = Paths.get("cache","tika").toString()
+        def sourceCacheFolderPath = Paths.get(rootDir, "cache", "web").toString()
+        def tikaCacheFolderPath = Paths.get(rootDir, "cache", "tika").toString()
 
         TikaExtractor.getAllTikaResultsToCache(sourceLinks, sourceCacheFolderPath, tikaCacheFolderPath)
     }
@@ -60,6 +60,9 @@ class App {
 
     def subProcessPrepareDataForGraph() {
         println "subProcessPrepareDataForGraph"
+
+        // Read back all json. Create an intermediate graph mode?
+
         /* todo_eg : to be completed. */
         /* Node :
            Link

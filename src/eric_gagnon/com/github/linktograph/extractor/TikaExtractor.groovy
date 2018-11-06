@@ -66,7 +66,7 @@ class TikaExtractor {
             connection.setDoOutput(true)
 
             connection.setRequestProperty("Accept", "application/json")
-            // connection.setRequestProperty("Content-Type", mimeType)
+
             def file = new File(send_to_tika_filepath)
             def bytes = file.getBytes()
             connection.getOutputStream().write(bytes);
